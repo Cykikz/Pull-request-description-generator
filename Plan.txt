@@ -1,0 +1,222 @@
+**Automated Pull Request Description Generator using Fine-Tuned Language Models**
+
+---
+
+# **1. Problem Statement**
+
+In modern software development, pull requests (PRs) are essential for collaboration and code review. However, developers often write vague or incomplete PR descriptions such as *“minor changes”* or *“bug fix”*, which:
+
+- Reduce code readability and maintainability
+- Make code reviews inefficient
+- Create poor long-term documentation
+
+Although platforms like GitHub provide basic commit suggestions, they lack deep semantic understanding of code changes.
+
+👉 Therefore, there is a need for an intelligent system that can automatically generate **clear, meaningful, and structured PR descriptions** from code changes.
+
+---
+
+# **2. Literature Review**
+
+Recent advancements in **Generative AI and code understanding models** have enabled automatic code summarization and documentation.
+
+- Research such as *“Sphinx: Benchmarking and Modeling for LLM-Driven Pull Request Review (2026)”* explores how large language models can interpret code diffs and assist in PR reviews.
+- Studies on commit message generation show that traditional models struggle with capturing **developer intent**.
+- Models like CodeLlama and DeepSeek-Coder demonstrate strong capabilities in code understanding but require **task-specific fine-tuning** for structured outputs like PR descriptions.
+
+👉 Existing systems:
+
+- Focus on simple summarization
+- Lack fine-grained intent understanding
+- Do not enforce structured PR documentation
+
+---
+
+# **3. Objectives**
+
+The main objectives of this project are:
+
+1. To design a system that understands **code diffs (before vs after changes)**
+2. To generate **human-like PR titles and descriptions**
+3. To improve **code documentation quality**
+4. To apply **fine-tuning techniques (LoRA/QLoRA)** on a pre-trained model
+5. To evaluate generated outputs using standard NLP metrics
+
+---
+
+# **4. Proposed Solution**
+
+This project proposes a **fine-tuned generative AI model** that converts code changes into meaningful PR descriptions.
+
+---
+
+## 🔄 Workflow
+
+```
+Git Diff (input)
+        ↓
+Preprocessing (cleaning + formatting)
+        ↓
+Fine-tuned Language Model
+        ↓
+Generated Output:
+   • PR Title
+   • PR Description
+   • Change Type (optional)
+```
+
+---
+
+## 🧠 Key Idea
+
+The model learns a mapping:
+
+```
+Code Changes → Intent → Natural Language Explanation
+```
+
+---
+
+## ✨ Example
+
+**Input (diff):**
+
+```
+- password = "1234"
++ password = hashPassword(userInput)
+```
+
+**Output:**
+
+> “Improved security by replacing hardcoded password with hashed user input.”
+> 
+
+---
+
+# **5. Methodology**
+
+### 1. Data Collection
+
+- Extract **(diff, PR description)** pairs from datasets
+
+### 2. Data Preprocessing
+
+- Clean diff format
+- Remove noise
+- Normalize text
+
+### 3. Model Selection
+
+- Base model: small code LLM (7B or smaller)
+
+### 4. Fine-Tuning Approach
+
+- Use **LoRA / QLoRA (Parameter Efficient Fine-Tuning)**
+- Train model on domain-specific mapping
+
+### 5. Evaluation
+
+- Compare:
+    - Base model (few-shot prompting)
+    - Fine-tuned model
+
+---
+
+# **6. Tech Stack**
+
+### Programming
+
+- Python
+
+### Libraries
+
+- Hugging Face Transformers
+- PEFT (LoRA/QLoRA)
+- PyTorch
+
+### Tools
+
+- Jupyter Notebook / Google Colab
+- Git
+
+### Optional UI
+
+- Simple web UI (React or basic frontend)
+
+---
+
+# **7. Datasets**
+
+Possible datasets include:
+
+- **CommitBench Dataset** (commit messages and diffs)
+- **CodeNet Dataset / CodeSearchNet**
+- GitHub repositories following good PR practices
+
+👉 Data format:
+
+```
+Input: Git Diff
+Output: PR Description
+```
+
+---
+
+# **8. Evaluation Metrics**
+
+To measure performance:
+
+- **ROUGE-L** → measures overlap with reference description
+- **METEOR** → evaluates semantic similarity
+- Optional:
+    - Human evaluation (readability, correctness)
+
+---
+
+# **9. Expected Outcomes**
+
+- A working model that:
+    - Generates meaningful PR descriptions
+    - Understands code changes better than baseline
+- Demonstration system:
+    - Input: diff
+    - Output: structured PR description
+
+---
+
+# **10. Novelty of the Project**
+
+- Focus on **intent-aware description generation**, not just summarization
+- Uses **fine-tuning instead of API-only solutions**
+- Bridges gap between:
+    - Code understanding
+    - Natural language generation
+
+---
+
+# **11. Limitations**
+
+- Model may not fully understand very complex code logic
+- Requires quality dataset for better performance
+- Limited by compute resources for fine-tuning
+
+---
+
+# **12. Future Scope**
+
+- Extend to full PR automation
+- Integrate with platforms like GitHub
+- Add:
+    - Reviewer suggestions
+    - Risk analysis
+    - Security checks
+
+---
+
+# **13. Conclusion**
+
+This project demonstrates how fine-tuned language models can enhance developer productivity by automatically generating high-quality pull request descriptions. It reduces manual effort, improves documentation, and supports efficient collaboration in software development workflows.
+
+How to get git diff?? and how it works
+
+open any repository , open pull requests tab , select files changes and copy the git diff , then paste that git diff into the frontend part and click generate it gives you a PR description for your git diff
