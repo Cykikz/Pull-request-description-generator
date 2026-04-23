@@ -222,6 +222,17 @@ How to get git diff?? and how it works
 open any repository , open pull requests tab , select files changes and copy the git diff , then paste that git diff into the frontend part and click generate it gives you a PR description for your git diff
 
 
+Colab 1 — Data collection & preprocessing
+Download a PR dataset (I'll use the ~41K GitHub PR pairs referenced in the papers), clean the diffs, and save as structured CSV/JSON with (diff, description) pairs.
+Colab 2 — Tokenization & dataset preparation
+Load the tokenizer for your chosen base model (CodeLlama-7B or DeepSeek-Coder-7B), tokenize everything, and create the train/val/test split. No GPU needed here.
+Colab 3 — Fine-tuning (LoRA/QLoRA) ← this is the core notebook
+Load the base model in 4-bit quantization, apply LoRA adapters using PEFT, train, and save the adapter weights to Google Drive or Hugging Face Hub. This one needs a GPU — use Colab T4 (free) or A100 (Colab Pro).
+Colab 4 — Evaluation
+Run inference with both the base model (few-shot prompting) and your fine-tuned model, then score using ROUGE-L and METEOR for comparison.
+Colab 5 — Demo UI
+A quick Gradio or Streamlit interface inside Colab where you paste a git diff and get a PR description back. This doubles as your project demo.
+
 Colab 1 + 2 can be one notebook (data + prep flow naturally together)
 Colab 3 stays alone (training is heavy, needs its own space)
 Colab 4 + 5 can be one notebook (eval + demo UI together — you test, you see results, same place)
