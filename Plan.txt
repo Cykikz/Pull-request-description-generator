@@ -220,3 +220,11 @@ This project demonstrates how fine-tuned language models can enhance developer p
 How to get git diff?? and how it works
 
 open any repository , open pull requests tab , select files changes and copy the git diff , then paste that git diff into the frontend part and click generate it gives you a PR description for your git diff
+
+
+Colab 1 + 2 can be one notebook (data + prep flow naturally together)
+Colab 3 stays alone (training is heavy, needs its own space)
+Colab 4 + 5 can be one notebook (eval + demo UI together — you test, you see results, same place)
+
+
+Since this is a GenAI project submission, go with 3 Colabs + a small React/HTML frontend. The frontend doesn't need to be complex — just a diff input box, a generate button, and a nicely formatted output panel.
