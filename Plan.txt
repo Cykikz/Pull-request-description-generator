@@ -239,3 +239,5 @@ Colab 4 + 5 can be one notebook (eval + demo UI together — you test, you see r
 
 
 Since this is a GenAI project submission, go with 3 Colabs + a small React/HTML frontend. The frontend doesn't need to be complex — just a diff input box, a generate button, and a nicely formatted output panel.
+
+Might use something bigger and better for it.
